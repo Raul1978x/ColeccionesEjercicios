@@ -7,9 +7,10 @@
  */
 package servicio;
 
+import Utilidad.Comparadores;
 import entidad.RazaPerro;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -25,33 +26,47 @@ public class ServicioRazaPerro {
         razasPerro = new ArrayList();
     }
 
+    public List<String> getRazasPerro() {
+        return razasPerro;
+    }
+
     public RazaPerro crearPerro() {
-        RazaPerro Raza = new RazaPerro();
+        RazaPerro raza = new RazaPerro();
         String op;
+
         System.out.println("Desea ingresar Razas de perros S/N");
         op = leer.next().toUpperCase();
         while ("S".equals(op)) {
             do {
                 System.out.println("Ingrese una raza de perro");
-                Raza.setRaza(leer.next());
-                razasPerro.add(Raza.getRaza());
+                raza.setRaza(leer.next());
+                razasPerro.add(raza.getRaza());
+                Collections.sort(razasPerro);
                 System.out.println("Desea continuar ingresando Razas de perros S/N");
                 op = leer.next().toUpperCase();
             } while ("S".equals(op));
             System.out.println(razasPerro);
         }
-        return Raza;
+        return raza;
     }
 
     public void encontrarPerro() {
         System.out.println("Ingrese una raza a eliminar");
         raza.setRazaEliminar(leer.next());
-        Iterator< String> iterador = razasPerro.iterator();
-        if (!iterador.equals(raza.getRazaEliminar())) {
-        } else { 
-            iterador.remove();
+        boolean encuentra = true;
+        for (int i = 0; i < razasPerro.size(); i++) {
+            String r = razasPerro.get(i);
+            if (r.contains(raza.getRazaEliminar())) {
+                razasPerro.remove(r);
+                encuentra= false;
+            }
         }
-        System.out.println(razasPerro);
 
+        if (encuentra) {
+            System.out.println("La raza " + raza.getRazaEliminar() + " no se encuentra en la lista");
+            System.out.println(razasPerro);
+        } else {
+            System.out.println(razasPerro);
+        }
     }
 }
