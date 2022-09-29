@@ -25,12 +25,11 @@ import utilidad.Comparadores;
 public class ServicioAlumno {
 
     Scanner leer;
-    Alumno alumno;
+//    Alumno alumno;
     List<Alumno> listaAlumnos;
 
     public ServicioAlumno() {
         leer = new Scanner(System.in).useDelimiter("\n");
-        alumno = new Alumno();
         listaAlumnos = new ArrayList<>();
     }
 
