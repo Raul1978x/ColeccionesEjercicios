@@ -1,5 +1,10 @@
 package ejerciciocoleccionesn05;
 
+<<<<<<< HEAD
+=======
+import servicio.ServicioPais;
+
+>>>>>>> escritorio
 /**
  * 5. Se requiere un programa que lea y guarde países, y para evitar que se
  * ingresen repetidos usaremos un conjunto. El programa pedirá un país en un
@@ -12,17 +17,28 @@ package ejerciciocoleccionesn05;
  * Iterator, se buscará el país en el conjunto y si está en el conjunto se
  * eliminará el país que ingresó el usuario y se mostrará el conjunto. Si el
  * país no se encuentra en el conjunto se le informará al usuario.
+<<<<<<< HEAD
  */
 import servicio.ServicioPais;
 
+=======
+ *
+ * @author Raul
+ */
+>>>>>>> escritorio
 public class EjercicioColeccionesN05 {
 
     public static void main(String[] args) {
         ServicioPais servicioPais = new ServicioPais();
+<<<<<<< HEAD
         servicioPais.llenarListaPaises();
         servicioPais.imprimirLista();
         System.out.println("***********************");
         servicioPais.ordenarAlfabetic();
     }
 
+=======
+        servicioPais.menu();
+    }
+>>>>>>> escritorio
 }

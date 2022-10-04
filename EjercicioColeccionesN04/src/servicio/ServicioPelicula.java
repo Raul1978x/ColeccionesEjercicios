@@ -4,6 +4,7 @@ import entidad.Pelicula;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Collections;
+import utilidad.ComparadorAscendenteDirector;
 import utilidad.Comparadores;
 
 /**
@@ -87,7 +88,7 @@ public class ServicioPelicula {
         }
     }
     public void imprimirPeliculasAlfaDirector() {
-        Collections.sort(listaPeliculas, Comparadores.comparadorAscendenteDeDirector);
+        Collections.sort(listaPeliculas,new ComparadorAscendenteDirector());
         for (Pelicula peli : listaPeliculas) {
             System.out.print(peli.toString());
         }
