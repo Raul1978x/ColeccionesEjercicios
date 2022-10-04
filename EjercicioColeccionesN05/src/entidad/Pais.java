@@ -20,12 +20,22 @@ import java.util.Objects;
 public class Pais implements Comparable<Pais> {
 
     private String pais;
+    private String paisEliminar;
 
     public Pais() {
     }
 
-    public Pais(String pais) {
+    public Pais(String pais, String paisEliminar) {
         this.pais = pais;
+        this.paisEliminar = paisEliminar;
+    }
+
+    public String getPaisEliminar() {
+        return paisEliminar;
+    }
+
+    public void setPaisEliminar(String paisEliminar) {
+        this.paisEliminar = paisEliminar;
     }
 
     public String getPais() {
@@ -39,7 +49,8 @@ public class Pais implements Comparable<Pais> {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.pais);
+        hash = 79 * hash + Objects.hashCode(this.pais);
+        hash = 79 * hash + Objects.hashCode(this.paisEliminar);
         return hash;
     }
 
@@ -58,12 +69,15 @@ public class Pais implements Comparable<Pais> {
         if (!Objects.equals(this.pais, other.pais)) {
             return false;
         }
+        if (!Objects.equals(this.paisEliminar, other.paisEliminar)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Pais{" + "pais=" + pais + '}';
+        return "Pais{" + "pais=" + pais + ", paisEliminar=" + paisEliminar + '}';
     }
 
     @Override

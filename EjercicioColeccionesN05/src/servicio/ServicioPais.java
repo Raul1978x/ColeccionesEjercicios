@@ -1,8 +1,6 @@
 package servicio;
 
 import entidad.Pais;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
@@ -26,8 +24,7 @@ import java.util.TreeSet;
 public class ServicioPais {
 
     private final Scanner leer;
-    private final TreeSet<Pais> conjuntoPaises;
-//    private Pais pais;
+    private final Set<String> conjuntoPaises;
 
     public ServicioPais() {
         this.leer = new Scanner(System.in).useDelimiter("\n");
@@ -36,13 +33,16 @@ public class ServicioPais {
 
     private void cargarPais() {
         Pais pais = new Pais();
+
         System.out.println("Ingrese el nombre de un Pais:");
-        pais.setPais(leer.next().toLowerCase());
-        conjuntoPaises.add(pais);
+        String p1 = leer.next();
+        pais.setPais(p1);
+        conjuntoPaises.add(p1);
     }
 
     public void llenarConjunto() {
         String op;
+
         do {
             cargarPais();
             System.out.println("Desea cargar otro pais?");
@@ -51,38 +51,56 @@ public class ServicioPais {
     }
 
     public void imprimirPais() {
-        for (Pais aux : conjuntoPaises) {
+        for (String aux : conjuntoPaises) {
             System.out.println(aux);
         }
     }
 
     public void eliminarPais() {
-        boolean borrar = false;
-        System.out.println("Ingrese el nombre de un pais a buscar");
-        String p1 = leer.next().toLowerCase();
-        String op="";
+        boolean encontrado = false;
+        Pais pais = new Pais();
         Iterator it = conjuntoPaises.iterator();
+        String op = "";
+
+        System.out.println("Ingrese el nombre de un pais a buscar");
+        String paisElim = leer.next();
+        pais.setPaisEliminar(paisElim);
+
         while (it.hasNext()) {
-            if (it.next().equals(p1)){
-                System.out.println("pais encotrado: " + it.next());
-                System.out.println("Desea borrar el pais" + it.next() + "?");
-                op =leer.next();
+            if (it.next().equals(paisElim)) {
+                System.out.println("pais encotrado: " + paisElim);
+                System.out.println("Desea borrar el pais " + paisElim + "?");
+                op = leer.next();
+                if (op.equalsIgnoreCase("s")) {
+                    it.remove();
+                    System.out.println("El pais ha sido eliminado");
+                } else {
+                    System.out.println("El pais no se ha eliminado");
+                }
             }
         }
-//                if (op.equalsIgnoreCase("s")) {
-//                    borrar = true;
-//                
-//            }
-//                if (borrar) {
-//                    it.remove();
-//                    System.out.println("El pais ha sido eliminado");
-//                } else {
-//                    System.out.println("El pais no se ha eliminado");
-//                }
-//            }
-        
-//        for (Pais aux : conjuntoPaises) {
-//            System.out.println(aux);
-//        }
+        it = conjuntoPaises.iterator();
+
+        while (it.hasNext()) {
+            if (!it.next().equals(paisElim)) {
+                encontrado = true;
+            }else {
+                encontrado=false;
+            }
+        }
+        if (encontrado) {
+            System.out.println("pais no encontrado");
+        }
+    }
+
+    public void menu() {
+        System.out.println("----------Llenar Conjunto----------");
+        llenarConjunto();
+        System.out.println("----------Imprimir Conjunto----------");
+        imprimirPais();
+        System.out.println("----------Eliminar Pais----------");
+        eliminarPais();
+        System.out.println("----------Imprimir Nuevo Conjunto----------");
+        imprimirPais();
     }
 }

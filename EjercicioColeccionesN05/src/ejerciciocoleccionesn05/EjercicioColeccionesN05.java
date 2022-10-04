@@ -21,9 +21,6 @@ public class EjercicioColeccionesN05 {
 
     public static void main(String[] args) {
         ServicioPais servicioPais = new ServicioPais();
-        servicioPais.llenarConjunto();
-        servicioPais.imprimirPais();
-        servicioPais.eliminarPais();
+        servicioPais.menu();
     }
-
 }
